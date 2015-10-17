@@ -26,7 +26,7 @@ public class NilaiDaoImpl implements NilaiDao {
 
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (id, kodeMapel,nilai) VALUES (?,?,?)");
         preparedStatement.setInt(1, nilai.getId());
-        preparedStatement.setInt(1, nilai.getKode());
+        preparedStatement.setObject(1, nilai.getMataPelajaran());
         preparedStatement.setInt(1, nilai.getNilai());
         preparedStatement.executeUpdate();
     }
@@ -35,7 +35,7 @@ public class NilaiDaoImpl implements NilaiDao {
     public void update(Nilai updatedNilai) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET kodeMapel=?,nilai=? WHERE id=?");
-        preparedStatement.setInt(1, updatedNilai.getKode());
+        preparedStatement.setObject(1, updatedNilai.getMataPelajaran());
         preparedStatement.setInt(2, updatedNilai.getNilai());
         preparedStatement.setInt(3, updatedNilai.getId());
 
@@ -59,7 +59,7 @@ public class NilaiDaoImpl implements NilaiDao {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                nilai.setKode(resultSet.getInt("kodeMapel"));
+                nilai.setMataPelajaran(resultSet.getObject("kodeMapel"));
                 nilai.setNilai(resultSet.getInt("nilai"));
             }
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class NilaiDaoImpl implements NilaiDao {
                 Nilai nilai = new Nilai();
 
                 nilai.setId(resultSet.getInt("id"));
-                nilai.setKode(resultSet.getInt("kodeMapel"));
+                nilai.setMataPelajaran(resultSet.getObject("kodeMapel"));
                 nilai.setNilai(resultSet.getInt("nilai"));
 
                 nilaiList.add(nilai);
