@@ -1,9 +1,9 @@
 package id.ac.uad.plankton;
 
-import id.ac.uad.plankton.dao.MapelDao;
+import id.ac.uad.plankton.dao.MataPelajaranDao;
 import id.ac.uad.plankton.dao.NilaiDao;
 import id.ac.uad.plankton.dao.StudentDao;
-import id.ac.uad.plankton.dao.impl.MapelDaoImpl;
+import id.ac.uad.plankton.dao.impl.MataPelajaranDaoImpl;
 import id.ac.uad.plankton.dao.impl.NilaiDaoImpl;
 import id.ac.uad.plankton.dao.impl.StudentDaoImpl;
 import id.ac.uad.plankton.db.DatabaseConnection;
@@ -22,8 +22,8 @@ public class MainApp {
         //Student in = new Student(7, "Bowo", "Palm");
         //Student up = new Student(6, "Gladis", "Malang");
 
-        //Mapel in = new Mapel(004, "DDP", 3);
-        //Mapel up = new Mapel(004, "DDP", 2);
+        //MataPelajaran in = new MataPelajaran(004, "DDP", 3);
+        //MataPelajaran up = new MataPelajaran(004, "DDP", 2);
 
 
         //Nilai in = new Nilai(2, 002, 90);
@@ -31,7 +31,7 @@ public class MainApp {
 
         try {
             StudentDao studentDao = new StudentDaoImpl(DatabaseConnection.getInstance().getConnection());
-            MapelDao mapelDao = new MapelDaoImpl(DatabaseConnection.getInstance().getConnection());
+            MataPelajaranDao mataPelajaranDao = new MataPelajaranDaoImpl(DatabaseConnection.getInstance().getConnection());
             NilaiDao nilaiDao = new NilaiDaoImpl(DatabaseConnection.getInstance().getConnection());
 
             //studentDao.insert(in);
@@ -39,16 +39,16 @@ public class MainApp {
             //studentDao.delete(6);
             //System.out.println("Nama : " + studentDao.findById(3).getName());
 
-            //mapelDao.insert(in);
-            //mapelDao.update(up);
-            //mapelDao.delete(002);
-            //System.out.println("Mapel : "+mapelDao.findById(001).getNama());
-            //System.out.println("SKS : " + mapelDao.findById(001).getSks());
+            //mataPelajaranDao.insert(in);
+            //mataPelajaranDao.update(up);
+            //mataPelajaranDao.delete(002);
+            //System.out.println("MataPelajaran : "+mataPelajaranDao.findById(001).getNama());
+            //System.out.println("SKS : " + mataPelajaranDao.findById(001).getSks());
 
             //nilaiDao.insert(in);
             //nilaiDao.update(up);
             //nilaiDao.delete(002);
-            //System.out.println("Kode Mapel : " + nilaiDao.findById(001).getKode());
+            //System.out.println("Kode MataPelajaran : " + nilaiDao.findById(001).getKode());
             //System.out.println("Nilai : " + nilaiDao.findById(001).getNilai());
 
 
@@ -62,11 +62,11 @@ public class MainApp {
             }*/
 
 
-           /*List<Mapel> mapelList = mapelDao.findAll();
+           /*List<MataPelajaran> mapelList = mataPelajaranDao.findAll();
 
-            for (Mapel s : mapelList) {
-                System.out.println("Kode Mapel      : " + s.getKodeMapel());
-                System.out.println("Nama Mapel    : " + s.getNamaMapel());
+            for (MataPelajaran s : mapelList) {
+                System.out.println("Kode MataPelajaran      : " + s.getKodeMapel());
+                System.out.println("Nama MataPelajaran    : " + s.getNamaMapel());
                 System.out.println("SKS : " + s.getSks());
                 System.out.println("--------------------------");
             }*/
@@ -76,7 +76,7 @@ public class MainApp {
 
             for (Nilai s : nilaiList) {
                 System.out.println("Id      : " + s.getId());
-                System.out.println("Kode Mapel    : " + s.getKodeMapel());
+                System.out.println("Kode MataPelajaran    : " + s.getKodeMapel());
                 System.out.println("Nilai : " + s.getNilai());
                 System.out.println("--------------------------");
             }*/
@@ -90,10 +90,10 @@ public class MainApp {
                 System.out.println("--------------------------");
             }*/
 
-            /*List<Mapel> mapelList = mapelDao.findByNameLike("%ddp%");
+            /*List<MataPelajaran> mataPelajaranList = mataPelajaranDao.findByNameLike("%ddp%");
 
-            for (Mapel s : mapelList) {
-                System.out.println("Kode Mapel      : " + s.getKode());
+            for (MataPelajaran s : mataPelajaranList) {
+                System.out.println("Kode MataPelajaran      : " + s.getKode());
                 System.out.println("Nama MApel    : " + s.getNama());
                 System.out.println("SKS : " + s.getSks());
                 System.out.println("--------------------------");

@@ -1,7 +1,7 @@
 package id.ac.uad.plankton.dao.impl;
 
-import id.ac.uad.plankton.dao.MapelDao;
-import id.ac.uad.plankton.model.Mapel;
+import id.ac.uad.plankton.dao.MataPelajaranDao;
+import id.ac.uad.plankton.model.MataPelajaran;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,30 +13,30 @@ import java.util.List;
 /**
  * Created by an on 13/10/15.
  */
-public class MapelDaoImpl implements MapelDao {
+public class MataPelajaranDaoImpl implements MataPelajaranDao {
     private Connection connection;
 
-    public MapelDaoImpl(Connection connection) {
+    public MataPelajaranDaoImpl(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public void insert(Mapel mapel) throws SQLException {
+    public void insert(MataPelajaran mataPelajaran) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO mapel (kodeMapel, namaMapel,sks) VALUES (?,?,?)");
-        preparedStatement.setInt(1, mapel.getKode());
-        preparedStatement.setString(2, mapel.getNama());
-        preparedStatement.setInt(3, mapel.getSks());
+        preparedStatement.setInt(1, mataPelajaran.getKode());
+        preparedStatement.setString(2, mataPelajaran.getNama());
+        preparedStatement.setInt(3, mataPelajaran.getSks());
 
         preparedStatement.executeUpdate();
 
     }
 
     @Override
-    public void update(Mapel updatedMapel) throws SQLException {
+    public void update(MataPelajaran updatedMataPelajaran) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE mapel SET namaMapel=?,sks=? WHERE kodeMapel=?");
-        preparedStatement.setString(1, updatedMapel.getNama());
-        preparedStatement.setInt(2, updatedMapel.getSks());
-        preparedStatement.setInt(3, updatedMapel.getKode());
+        preparedStatement.setString(1, updatedMataPelajaran.getNama());
+        preparedStatement.setInt(2, updatedMataPelajaran.getSks());
+        preparedStatement.setInt(3, updatedMataPelajaran.getKode());
 
         preparedStatement.executeUpdate();
 
@@ -51,8 +51,8 @@ public class MapelDaoImpl implements MapelDao {
     }
 
     @Override
-    public Mapel findById(int kode) throws SQLException {
-        Mapel mapel = new Mapel();
+    public MataPelajaran findById(int kode) throws SQLException {
+        MataPelajaran mataPelajaran = new MataPelajaran();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT namaMapel, sks FROM mapel WHERE kodeMapel=?");
             preparedStatement.setInt(1, kode);
@@ -60,35 +60,35 @@ public class MapelDaoImpl implements MapelDao {
 
             while (resultSet.next()) {
 
-                mapel.setNama(resultSet.getString("namaMapel"));
-                mapel.setSks(resultSet.getInt("sks"));
+                mataPelajaran.setNama(resultSet.getString("namaMapel"));
+                mataPelajaran.setSks(resultSet.getInt("sks"));
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return mapel;
+        return mataPelajaran;
     }
 
     @Override
-    public List<Mapel> findAll() {
+    public List<MataPelajaran> findAll() {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT kodeMapel,namaMapel,sks FROM mapel");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Mapel> mapelList = new ArrayList<>();
+            List<MataPelajaran> mataPelajaranList = new ArrayList<>();
             while (resultSet.next()) {
-                Mapel mapel = new Mapel();
+                MataPelajaran mataPelajaran = new MataPelajaran();
 
-                mapel.setKode(resultSet.getInt("kodeMapel"));
-                mapel.setNama(resultSet.getString("namaMapel"));
-                mapel.setSks(resultSet.getInt("sks"));
+                mataPelajaran.setKode(resultSet.getInt("kodeMapel"));
+                mataPelajaran.setNama(resultSet.getString("namaMapel"));
+                mataPelajaran.setSks(resultSet.getInt("sks"));
 
-                mapelList.add(mapel);
+                mataPelajaranList.add(mataPelajaran);
             }
 
-            return mapelList;
+            return mataPelajaranList;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,25 +97,25 @@ public class MapelDaoImpl implements MapelDao {
     }
 
     @Override
-    public List<Mapel> findByNameLike(String nama) throws SQLException {
+    public List<MataPelajaran> findByNameLike(String nama) throws SQLException {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT kodeMapel,namaMapel,sks FROM mapel WHERE namaMapel=?");
             preparedStatement.setString(1, nama);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Mapel> mapelList = new ArrayList<>();
+            List<MataPelajaran> mataPelajaranList = new ArrayList<>();
             while (resultSet.next()) {
-                Mapel mapel = new Mapel();
+                MataPelajaran mataPelajaran = new MataPelajaran();
 
-                mapel.setKode(resultSet.getInt("kodeMapel"));
-                mapel.setNama(resultSet.getString("namaMapel"));
-                mapel.setSks(resultSet.getInt("sks"));
+                mataPelajaran.setKode(resultSet.getInt("kodeMapel"));
+                mataPelajaran.setNama(resultSet.getString("namaMapel"));
+                mataPelajaran.setSks(resultSet.getInt("sks"));
 
-                mapelList.add(mapel);
+                mataPelajaranList.add(mataPelajaran);
             }
 
-            return mapelList;
+            return mataPelajaranList;
 
         } catch (SQLException e) {
             e.printStackTrace();
