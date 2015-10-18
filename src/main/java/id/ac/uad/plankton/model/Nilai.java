@@ -9,10 +9,10 @@ public class Nilai {
     private Student student;
     private int nilai;
 
-    public Nilai(int i, int s, int i1) {
+    public Nilai() {
     }
 
-    public Nilai() {
+    public Nilai(int id, MataKuliah mataKuliah, Student student, int nilai) {
         this.id = id;
         this.mataKuliah = mataKuliah;
         this.student = student;

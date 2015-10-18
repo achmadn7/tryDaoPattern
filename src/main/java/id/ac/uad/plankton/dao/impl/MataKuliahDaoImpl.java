@@ -83,7 +83,7 @@ public class MataKuliahDaoImpl implements MataKuliahDao {
 
             List<MataKuliah> mataKuliahList = new ArrayList<>();
             while (resultSet.next()) {
-                MataKuliah mataKuliah = new MataKuliah()
+                MataKuliah mataKuliah = new MataKuliah();
 
                 mataKuliah.setKode(resultSet.getInt("mata_kuliah_kode"));
                 mataKuliah.setNama(resultSet.getString("namaKuliah"));
