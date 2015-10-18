@@ -6,8 +6,10 @@ import id.ac.uad.plankton.dao.impl.MataKuliahDaoImpl;
 import id.ac.uad.plankton.dao.impl.NilaiDaoImpl;
 import id.ac.uad.plankton.dao.impl.StudentDaoImpl;
 import id.ac.uad.plankton.db.DatabaseConnection;
+import id.ac.uad.plankton.model.Nilai;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by an on 07/10/15.
@@ -71,15 +73,15 @@ public class MainApp {
             }*/
 
 
-           /*List<Nilai> nilaiList = nilaiDao.findAll();
+           List<Nilai> nilaiList = nilaiDao.findAll();
 
             for (Nilai s : nilaiList) {
-                System.out.println("Id      : " + s.getStudent());
-                //System.out.println("Nama    : ") + s.getStudent());
-                System.out.println("Kode MataKuliah    : " + s.getMataKuliah());
-                System.out.println("Nilai : " + s.getNilai());
+                System.out.println("Id                 : " + s.getStudent().getId());
+                System.out.println("Nama               : " + s.getStudent().getName());
+                System.out.println("Kode MataKuliah    : " + s.getMataKuliah().getKode());
+                System.out.println("Nilai              : " + s.getNilai());
                 System.out.println("--------------------------");
-            }*/
+            }
 
             /*List<Student> studentList = studentDao.findByNameLike("%waqid%");
 

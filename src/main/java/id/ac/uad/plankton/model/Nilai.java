@@ -31,7 +31,7 @@ public class Nilai {
         return mataKuliah;
     }
 
-    public void setMataPelajaran() {
+    public void setMataKuliah(MataKuliah mataKuliah) {
         this.mataKuliah = mataKuliah;
     }
 

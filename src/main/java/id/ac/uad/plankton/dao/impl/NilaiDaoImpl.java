@@ -99,6 +99,7 @@ public class NilaiDaoImpl implements NilaiDao {
                 n.setNilai(resultSet.getInt("nilai"));
 
                 n.setStudent(s);
+                n.setMataKuliah(mk);
                 nilaiList.add(n);
             }
 
