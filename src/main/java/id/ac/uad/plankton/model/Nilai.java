@@ -5,9 +5,19 @@ package id.ac.uad.plankton.model;
  */
 public class Nilai {
     private int id;
-    private Object mataPelajaran;
+    private MataKuliah mataKuliah;
     private Student student;
     private int nilai;
+
+    public Nilai(int i, int s, int i1) {
+    }
+
+    public Nilai() {
+        this.id = id;
+        this.mataKuliah = mataKuliah;
+        this.student = student;
+        this.nilai = nilai;
+    }
 
     public int getId() {
         return id;
@@ -17,12 +27,12 @@ public class Nilai {
         this.id = id;
     }
 
-    public Object getMataPelajaran() {
-        return mataPelajaran;
+    public MataKuliah getMataKuliah() {
+        return mataKuliah;
     }
 
-    public void setMataPelajaran(Object mataPelajaran) {
-        this.mataPelajaran = mataPelajaran;
+    public void setMataPelajaran() {
+        this.mataKuliah = mataKuliah;
     }
 
     public Student getStudent() {

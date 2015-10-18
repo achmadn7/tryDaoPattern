@@ -3,15 +3,15 @@ package id.ac.uad.plankton.model;
 /**
  * Created by an on 13/10/15.
  */
-public class MataPelajaran {
+public class MataKuliah {
     private int kode;
     private String nama;
     private int sks;
 
-    public MataPelajaran() {
+    public MataKuliah() {
     }
 
-    public MataPelajaran(int kode, String nama, int sks) {
+    public MataKuliah(int kode, String nama, int sks) {
         this.kode = kode;
         this.nama = nama;
         this.sks = sks;

@@ -1,7 +1,9 @@
 package id.ac.uad.plankton.dao.impl;
 
 import id.ac.uad.plankton.dao.NilaiDao;
+import id.ac.uad.plankton.model.MataKuliah;
 import id.ac.uad.plankton.model.Nilai;
+import id.ac.uad.plankton.model.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,18 +26,21 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void insert(Nilai nilai) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (id, kodeMapel,nilai) VALUES (?,?,?)");
-        preparedStatement.setInt(1, nilai.getId());
-        preparedStatement.setObject(1, nilai.getMataPelajaran());
-        preparedStatement.setInt(1, nilai.getNilai());
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (student_id, mata_kuliah_kode, nilai) VALUES (?,?,?,?)");
+        preparedStatement.setInt(1,nilai.getStudent().getId());
+        preparedStatement.setInt(2,nilai.getMataKuliah().getKode());
+        preparedStatement.setInt(3, nilai.getNilai());
+
+        preparedStatement.addBatch();
+
         preparedStatement.executeUpdate();
     }
 
     @Override
     public void update(Nilai updatedNilai) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET kodeMapel=?,nilai=? WHERE id=?");
-        preparedStatement.setObject(1, updatedNilai.getMataPelajaran());
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET mata_kuliah_kode=?,nilai=? WHERE student_id=?");
+        preparedStatement.setInt(1, updatedNilai.getMataKuliah().getKode());
         preparedStatement.setInt(2, updatedNilai.getNilai());
         preparedStatement.setInt(3, updatedNilai.getId());
 
@@ -46,20 +51,22 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void delete(int id) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM nilai WHERE id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM nilai WHERE student_id=?");
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
 
     @Override
     public Nilai findById(int id) throws SQLException {
-        Nilai nilai = new Nilai();
+        Nilai nilai = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT kodeMapel, nilai FROM nilai WHERE id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT mata_kuliah_kode, nilai FROM nilai WHERE student_id=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                nilai.setMataPelajaran(resultSet.getObject("kodeMapel"));
+                nilai = new Nilai();
+                MataKuliah mataKuliah = new MataKuliah();
+                mataKuliah.setKode(resultSet.getInt("mata_kuliah_kode"));
                 nilai.setNilai(resultSet.getInt("nilai"));
             }
         } catch (SQLException e) {
@@ -72,18 +79,24 @@ public class NilaiDaoImpl implements NilaiDao {
     public List<Nilai> findAll() {
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id,kode_mapel,nilai FROM nilai");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT n.id,n.nilai,s.student_id as student_id, s.name as student_name, mk.namaKuliah as matakuliah_name, mk.mata_kuliah_kode, mk.Sks FROM nilai n\n" +
+                    "  INNER JOIN matakuliah mk ON mk.mata_kuliah_kode = n.mata_kuliah_kode\n" +
+                    "  INNER JOIN student s ON s.student_id = n.student_id");
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Nilai> nilaiList = new ArrayList<>();
-            while (resultSet.next()) {
-                Nilai nilai = new Nilai();
+            List<Nilai>nilaiList = new ArrayList<>();
+            while (resultSet.next()){
+                Student s = new Student();
+                MataKuliah mk = new MataKuliah();
+                Nilai n = new Nilai();
 
-                nilai.setId(resultSet.getInt("id"));
-                nilai.setMataPelajaran(resultSet.getObject("kodeMapel"));
-                nilai.setNilai(resultSet.getInt("nilai"));
+                s.setId(resultSet.getInt("student_id"));
+                mk.setKode(resultSet.getInt("mata_kuliah_kode"));
+                n.setId(resultSet.getInt("id"));
+                n.setNilai(resultSet.getInt("nilai"));
 
-                nilaiList.add(nilai);
+                nilaiList.add(n);
+
             }
 
             return nilaiList;
