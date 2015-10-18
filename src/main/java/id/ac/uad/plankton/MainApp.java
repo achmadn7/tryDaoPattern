@@ -27,7 +27,7 @@ public class MainApp {
         //MataKuliah up = new MataKuliah(6, "B. Inggris", 2);
 
 
-        //Nilai in = new Nilai(3,3,95);
+        //Nilai in = new Nilai(1,3,80);
         //Nilai up = new Nilai(2, 2, 95);
 
         try {
@@ -48,7 +48,7 @@ public class MainApp {
 
             //nilaiDao.insert(in);
             //nilaiDao.update(up);
-            //nilaiDao.delete(002);
+            //nilaiDao.delete(1);
             //System.out.println("Kode MataKuliah : " + nilaiDao.findById(1).getMataKuliah().getKode());
             //System.out.println("Nilai : " + nilaiDao.findById(1).getNilai());
 

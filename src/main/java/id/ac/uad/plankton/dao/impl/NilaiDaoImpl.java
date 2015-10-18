@@ -39,7 +39,7 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void update(Nilai updatedNilai) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET mata_kuliah_kode=?,nilai=? WHERE student_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET mata_kuliah_kode=?,nilai=? WHERE id=?");
         preparedStatement.setInt(1, updatedNilai.getMataKuliah().getKode());
         preparedStatement.setInt(2, updatedNilai.getNilai());
         preparedStatement.setInt(3, updatedNilai.getId());
@@ -51,7 +51,7 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void delete(int id) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM nilai WHERE student_id=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM nilai WHERE id=?");
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
     }
@@ -60,7 +60,7 @@ public class NilaiDaoImpl implements NilaiDao {
     public Nilai findById(int id) throws SQLException {
         Nilai nilai = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT mata_kuliah_kode, nilai FROM nilai WHERE student_id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT mata_kuliah_kode, nilai FROM nilai WHERE id=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
