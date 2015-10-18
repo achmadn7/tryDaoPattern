@@ -68,6 +68,8 @@ public class NilaiDaoImpl implements NilaiDao {
                 MataKuliah mataKuliah = new MataKuliah();
                 mataKuliah.setKode(resultSet.getInt("mata_kuliah_kode"));
                 nilai.setNilai(resultSet.getInt("nilai"));
+
+                nilai.setMataKuliah(mataKuliah);
             }
         } catch (SQLException e) {
             e.printStackTrace();

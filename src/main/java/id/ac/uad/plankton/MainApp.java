@@ -50,7 +50,7 @@ public class MainApp {
             //nilaiDao.update(up);
             //nilaiDao.delete(002);
             //System.out.println("Kode MataKuliah : " + nilaiDao.findById(1).getMataKuliah().getKode());
-           // System.out.println("Nilai : " + nilaiDao.findById(1).getNilai());
+            //System.out.println("Nilai : " + nilaiDao.findById(1).getNilai());
 
 
            /*List<Student> studentList = studentDao.findAll();
