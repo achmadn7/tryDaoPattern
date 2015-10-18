@@ -25,7 +25,7 @@ public class MainApp {
         //MataKuliah up = new MataKuliah(6, "B. Inggris", 2);
 
 
-        //Nilai in = new Nilai(2,2,95);
+        //Nilai in = new Nilai(3,3,95);
         //Nilai up = new Nilai(2, 2, 95);
 
         try {
@@ -74,8 +74,9 @@ public class MainApp {
            /*List<Nilai> nilaiList = nilaiDao.findAll();
 
             for (Nilai s : nilaiList) {
-                System.out.println("Id      : " + s.getStudent().getId());
-                System.out.println("Kode MataKuliah    : " + s.getMataKuliah().getKode());
+                System.out.println("Id      : " + s.getStudent());
+                //System.out.println("Nama    : ") + s.getStudent());
+                System.out.println("Kode MataKuliah    : " + s.getMataKuliah());
                 System.out.println("Nilai : " + s.getNilai());
                 System.out.println("--------------------------");
             }*/

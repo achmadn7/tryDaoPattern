@@ -91,12 +91,15 @@ public class NilaiDaoImpl implements NilaiDao {
                 Nilai n = new Nilai();
 
                 s.setId(resultSet.getInt("student_id"));
+                s.setName(resultSet.getString("student_name"));
+                mk.setNama(resultSet.getString("matakuliah_name"));
                 mk.setKode(resultSet.getInt("mata_kuliah_kode"));
+                mk.setSks(resultSet.getInt("Sks"));
                 n.setId(resultSet.getInt("id"));
                 n.setNilai(resultSet.getInt("nilai"));
 
+                n.setStudent(s);
                 nilaiList.add(n);
-
             }
 
             return nilaiList;
