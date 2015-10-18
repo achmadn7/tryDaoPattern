@@ -26,7 +26,7 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void insert(Nilai nilai) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (student_id, mata_kuliah_kode, nilai) VALUES (?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (student_id, mata_kuliah_kode, nilai) VALUES (?,?,?)");
         preparedStatement.setInt(1,nilai.getStudent().getId());
         preparedStatement.setInt(2,nilai.getMataKuliah().getKode());
         preparedStatement.setInt(3, nilai.getNilai());
